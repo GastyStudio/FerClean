@@ -25,7 +25,7 @@ const CONFIG = {
   // Usar rutas relativas (ej: "img/hero.webp") o URLs. Recomendado: WebP/AVIF, hero ≤ 200 KB, resto ≤ 120 KB.
   images: {
     hero: "",
-    tejados: "", fachadas: "", veredas: "", patios: "",
+    tejados: "img/tejas2.webp", fachadas: "img/frenteyfachada.webp", veredas: "img/veredayentrada.webp", patios: "img/111.webp",
     // Cada trabajo se puede cargar de dos formas:
     //  a) Slider:      { before: "img/x-antes.webp", after: "img/x-despues.webp" }
     //  b) Foto partida (una sola foto con zona sucia y limpia):
@@ -34,8 +34,8 @@ const CONFIG = {
     ba: {
       tejado: { split: "img/tejado.webp", dirty: "bottom" },
       frente: { split: "img/frente.webp", dirty: "left" },
-      vereda: { before: "", after: "" },
-      patio:  { before: "", after: "" }
+      vereda: { split: "img/pisos.webp", dirty: "right" },
+      patio:  { split: "img/patio.jpg"}
     }
   }
 };
