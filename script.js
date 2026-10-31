@@ -4,7 +4,7 @@
 const CONFIG = {
   // PERSONALIZAR: número definitivo, solo dígitos, con código de país y sin "+".
   // Argentina celular: 549 + código de área + número. Ej: 5491123456789
-  whatsappNumber: "5491100000000",
+  whatsappNumber: "5491167845506",
 
   // Mensajes iniciales según el botón (data-wa="clave"). "default" se usa si no hay clave.
   messages: {
@@ -26,9 +26,14 @@ const CONFIG = {
   images: {
     hero: "",
     tejados: "", fachadas: "", veredas: "", patios: "",
+    // Cada trabajo se puede cargar de dos formas:
+    //  a) Slider:      { before: "img/x-antes.webp", after: "img/x-despues.webp" }
+    //  b) Foto partida (una sola foto con zona sucia y limpia):
+    //                  { split: "img/x.webp", dirty: "left" | "right" | "top" | "bottom" }
+    //     "dirty" indica de qué lado de la foto está la zona SIN limpiar.
     ba: {
-      tejado: { before: "", after: "" },
-      frente: { before: "", after: "" },
+      tejado: { split: "img/tejado.webp", dirty: "bottom" },
+      frente: { split: "img/frente.webp", dirty: "left" },
       vereda: { before: "", after: "" },
       patio:  { before: "", after: "" }
     }
@@ -147,6 +152,17 @@ document.querySelectorAll("[data-slot]").forEach(el => {
 document.querySelectorAll("[data-ba]").forEach(el => {
   const cfg = CONFIG.images.ba[el.dataset.ba] || {};
   const t = el.dataset.scene, lbl = el.dataset.label;
+
+  /* Modo "foto partida": una sola foto con la zona sucia y la limpia (ver CONFIG.images.ba) */
+  if (cfg.split) {
+    el.classList.add("split");
+    el.dataset.dirty = cfg.dirty || "left";
+    el.innerHTML =
+      `<div class="layer"><img src="${cfg.split}" alt="${lbl}: zona sin limpiar y zona limpia" loading="lazy" decoding="async"></div>
+       <span class="lab a">Antes</span><span class="lab d">Después</span>`;
+    return;
+  }
+
   el.innerHTML =
     `<div class="layer">${media(cfg.after, t, false, lbl + " después de la limpieza")}</div>
      <div class="layer before">${media(cfg.before, t, true, lbl + " antes de la limpieza")}</div>

@@ -45,9 +45,12 @@ header.scrolled{background:rgba(6,24,46,.94);backdrop-filter:blur(10px);box-shad
 @media(min-width:520px){.nav .btn-sm span.long{display:inline}}
 
 /* Hero */
-.hero{position:relative;background:radial-gradient(900px 500px at 85% 20%,rgba(10,111,214,.55),transparent 60%),radial-gradient(600px 400px at 0% 100%,rgba(56,182,255,.2),transparent 60%),linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;padding:120px 0 80px;overflow:hidden}
+/* Hero con foto de fondo (img/hero.webp). El degradado izquierdo tapa el texto que ya trae la imagen. */
+.hero{position:relative;background:linear-gradient(90deg,#06182e 0%,#06182e 45%,rgba(6,24,46,.25) 76%,rgba(6,24,46,0) 100%),url("img/hero.webp") center top/cover no-repeat,var(--navy);color:#fff;padding:120px 0 80px;overflow:hidden}
 .hero-grid{display:grid;gap:40px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr 1fr}.hero{padding:140px 0 100px}}
+@media(min-width:900px){.hero-grid{grid-template-columns:1fr}.hero{padding:140px 0 100px}.hero-grid>div:first-child{max-width:560px}}
+@media(max-width:899px){.hero{background:linear-gradient(180deg,rgba(6,24,46,.84),rgba(6,24,46,.72)),url("img/hero.webp") 78% center/cover no-repeat,var(--navy)}}
+.hero-visual{display:none}
 .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:.82rem;font-weight:500;color:#cfe6ff;margin-bottom:20px;background:rgba(255,255,255,.06)}
 .tag i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(56,182,255,.25)}
 .hero h1{font-size:clamp(2.1rem,6vw,3.6rem);margin-bottom:18px}
@@ -174,3 +177,12 @@ footer ul a:hover{color:var(--sky)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
 }
+
+/* Foto partida (antes/después en una sola foto) */
+.ba.split{cursor:default}
+.ba.split[data-dirty="right"] .lab.a{left:auto;right:12px}
+.ba.split[data-dirty="right"] .lab.d{right:auto;left:12px}
+.ba.split[data-dirty="top"] .lab.a{left:12px;top:12px}
+.ba.split[data-dirty="top"] .lab.d{right:auto;left:12px;top:auto;bottom:12px}
+.ba.split[data-dirty="bottom"] .lab.a{top:auto;bottom:12px;left:12px}
+.ba.split[data-dirty="bottom"] .lab.d{right:auto;left:12px;top:12px}
